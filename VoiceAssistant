@@ -1,0 +1,38 @@
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
+import java.util.Scanner;
+
+public class VoiceAssistant {
+    private static final String VOICE_NAME = "Donna";
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String userInput;
+          speak("Hello! I'm Donna. How can I assist you today?");
+                while (true){
+                    userInput = scanner.nextLine();
+                    if (userInput.equalsIgnoreCase("exit")) {
+                        speak("Goodbye! Youve got this!");
+                        break;
+                    } 
+                    String response = getAIResponse(userInput);
+                    speak(response);
+                }                          
+
+    }
+    public static void speak(String text) {
+        Voice voice;
+        VoiceManager voiceManager = VoiceManager.getInstance();
+        voice = voiceManager.getVoice(Donna));
+
+        if (voice != null) {
+            voice.allocate();
+            voice.speak(text);
+            voice.deallocate();
+        } 
+    }
+    public static String getAIResponse(String input) {
+        // Placeholder for AI response logic
+        return "You said: " + input + "and i already anticipated that.";
+    }
+}

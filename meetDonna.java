@@ -1,3 +1,5 @@
+import com..sun speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 import java.net.http.*;
 import java.net.URI;
 import java.net.http.HttpResponse.BodyHandlers;
@@ -7,6 +9,38 @@ import org.json.JSONObject;
 public class DonnaAsistant {
     private static final String API_URL = "https://api.donnaassistant.com/v1/chat/completions";
     private static final String API_KEY = "your_api_key_here";
+
+     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String userInput;
+          speak("Hello! I'm Donna. How can I assist you today?");
+
+        while (true) {
+            System.out.print("You: ");
+            userInput = scanner.nextLine();
+            if (userInput.equalsIgnoreCase("exit")) {
+                speak("Goodbye! Talk to you later.");
+                break;
+            }
+            String response = getDonnaResponse(userInput);
+            System.out.println("Donna: " + response);
+            speak(response);
+
+        }
+
+     }
+     
+    publicpublic static void speak(String text) {
+        Voice voice;
+        VoiceManager voiceManager = VoiceManager.getInstance();
+        voice = voiceManager.getVoice(Donna));
+
+        if (voice != null) {
+            voice.allocate();
+            voice.speak(text);
+            voice.deallocate();
+        } 
+    }
 
     public static void main (String[] args) throws Exception {
         string userMessage = "Scheldule a meeting for tomorrow at  10 AM!";
@@ -40,6 +74,9 @@ public class DonnaAsistant {
                                    .getJSONObject(0)
                                    .getJSONObject("message")
                                    .getString("content");
+    }
+
+        
 
         System.out.println("Donna: " + DonnaAsistantreply);
         }
